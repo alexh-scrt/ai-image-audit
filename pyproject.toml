@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "ai_image_audit"
+version = "0.1.0"
+description = "A web tool that scans image directories or website URLs, classifies AI-generated content using a CNN, generates metadata reports, and suggests royalty-free alternatives."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "AI Image Audit Contributors" }
+]
+keywords = ["ai", "image", "audit", "classifier", "flask", "pytorch"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "flask>=3.0.0",
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    "Pillow>=10.0.0",
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "numpy>=1.24.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "responses>=0.23.0",
+]
+
+[project.scripts]
+ai-image-audit = "ai_image_audit.app:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ai_image_audit*"]
+
+[tool.setuptools.package-data]
+ai_image_audit = ["static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
